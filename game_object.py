@@ -17,15 +17,15 @@ def render(canvas):
             game_object.render(canvas)
 
 
-def recycle(t, x, y):
+def recycle(object_type, x, y):
     for game_object in game_objects:
-        if not game_object.is_active and type(game_object) == t:
+        if not game_object.is_active and type(game_object) == object_type:
             game_object.is_active = True
             game_object.x = x
             game_object.y = y
             return game_object
 
-    new_game_object = t(x, y)
+    new_game_object = object_type(x, y)
     add(new_game_object)
     return new_game_object
 
