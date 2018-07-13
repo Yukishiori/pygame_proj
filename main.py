@@ -1,4 +1,6 @@
 import pygame
+
+from Platform.Platform import Platform
 from player.player import Player
 
 import game_object
@@ -12,7 +14,7 @@ BG = (255, 255, 0)
 pygame.init()
 
 # 2. Set screen
-SIZE = (600, 800)
+SIZE = (1280, 720)
 canvas = pygame.display.set_mode(SIZE)
 
 # 3. Clock
@@ -22,10 +24,26 @@ loop = True
 
 input_manager = InputManager()
 
-player = Player(400, 580, input_manager)
+player = Player(50, 0, input_manager)
 
 game_object.add(player)
 game_object.add(EnemySpawner())
+
+for i in range(15):
+    platform2 = Platform(32 + i * 64, 600)
+    game_object.add(platform2)
+
+platform = Platform(300, 650)
+game_object.add(platform)
+
+platform = Platform(500, 500)
+game_object.add(platform)
+
+platform = Platform(64, 500)
+game_object.add(platform)
+
+platform = Platform(120, 400)
+game_object.add(platform)
 
 while loop:
     # 1. Event processing
