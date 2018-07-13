@@ -6,7 +6,7 @@ from game_object import GameObject
 import game_object
 
 
-class Platform(GameObject):
+class PlatformFlying(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
         self.image = pygame.image.load("images/map/forest.png")
