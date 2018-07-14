@@ -4,12 +4,13 @@ import pygame
 from box_collider import BoxCollider
 from game_object import GameObject
 import game_object
+from renderers.animation import Animation
 
 
 class SpikeLeft(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
-        self.image = pygame.image.load("images/spike_left.png")
+        self.renderer = Animation(["images/spike_left.png"], loop=True)
         self.box_collider = BoxCollider(32, 64)
         self.v_x = game_object.game_speed #velocity
 
