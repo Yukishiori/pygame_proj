@@ -1,7 +1,6 @@
 import pygame
 
 from Platform.Platform import Platform
-from Platform.platform_flying import PlatformFlying
 from player.player import Player
 
 import game_object
@@ -30,30 +29,29 @@ input_manager = InputManager()
 player = Player(50, 0, input_manager)
 
 game_object.add(player)
+
 platform_spawner = PlatformSpawner()
 game_object.add(platform_spawner)
+enemy_spawner = EnemySpawner()
+game_object.add(enemy_spawner)
 platform_flying_spawner = PlatformFlyingSpawner()
 game_object.add(platform_flying_spawner)
 
-for i in range(1):
-    platform2 = Platform(32 + i * 64, 600)
+
+for i in range(21):
+    platform2 = Platform(32 + i * 64, 650)
     game_object.add(platform2)
 
-for j in range(1):
-    platform_flying = PlatformFlying(32 + j * 64, 200)
-    game_object.add(platform_flying)
 
-# platform = Platform(300, 450)
-# game_object.add(platform)
-#
-# platform = Platform(500, 500)
-# game_object.add(platform)
-#
-# platform = Platform(64, 500)
-# game_object.add(platform)
-#
-# platform = Platform(120, 400)
-# game_object.add(platform)
+
+# for j in range(1):
+#     platform_flying = PlatformFlying(32 + j * 64, 200)
+#     game_object.add(platform_flying)
+
+
+
+
+
 
 while loop:
     # 1. Event processing

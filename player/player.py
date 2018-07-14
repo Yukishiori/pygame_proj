@@ -1,6 +1,7 @@
 import pygame
 
 from Platform.Platform import Platform
+from enemy.obstacle import Obstacle
 from box_collider import BoxCollider
 from player.player_bullet import PlayerBullet
 import game_object
@@ -26,6 +27,7 @@ class Player(GameObject):
         GameObject.update(self)
         self.move()
         self.shoot()
+        self.deactivate_if_needed()
 
     def move(self):
         self.dx = 0
@@ -101,3 +103,7 @@ class Player(GameObject):
             if self.counter.expired:
                 self.shoot_lock = False
                 self.counter.reset()
+
+    def deactivate_if_need(self):
+        if BoxCollider.collide_with(self,Obstacle):
+            self.deactivate()
