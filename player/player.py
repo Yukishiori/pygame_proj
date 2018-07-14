@@ -12,14 +12,14 @@ class Player(GameObject):
     # 1. Create constructor (properties)
     def __init__(self, x, y, input_manager):
         GameObject.__init__(self, x, y)
-        self.image = pygame.image.load('images/player/player1.png')
+        self.image = pygame.image.load('images/player/bunny.png')
         self.input_manager = input_manager
         self.shoot_lock = False
         self.counter = FrameCounter(30)
         self.box_collider = BoxCollider(64, 128)
         self.dx = 0
         self.dy = 0
-        self.jump_speed = -20
+        self.jump_speed = -15
 
     # 2. Describe action / method / behavior
     def update(self):
