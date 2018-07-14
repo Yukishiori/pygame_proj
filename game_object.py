@@ -5,6 +5,8 @@ game_speed = 3
 def add(game_object):
     game_objects.append(game_object)
 
+def clear():
+    game_objects.clear()
 
 def update():
     print(len(game_objects))
@@ -46,7 +48,7 @@ class GameObject:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.image = None
+        self.renderer = None
         self.is_active = True
         self.box_collider = None
 
@@ -57,11 +59,8 @@ class GameObject:
             # self.box_collider.render()
 
     def render(self, canvas):
-        if self.image is not None:
-            width = self.image.get_width()
-            height = self.image.get_height()
-            render_pos = (self.x - width / 2, self.y - height / 2)
-            canvas.blit(self.image, render_pos)
+        if self.renderer is not None:
+            self.renderer.render(canvas, self.x, self.y)
         # if self.box_collider is not None:
         #     self.box_collider.render(canvas)
 

@@ -1,11 +1,10 @@
 import pygame
 
-from Platform.Platform import Platform
-from player.player import Player
-
 import game_object
-from game_event import GameEvent
-from input.input_manager import InputManager
+from input.input_manager import global_input_manager
+from scenes.gameover_scene import GameoverScene
+from scenes.scene_manager import global_scene_manager
+from scenes.menu_scene import MenuScene
 
 
 BG = (0, 0, 0)
@@ -13,7 +12,6 @@ BG = (0, 0, 0)
 
 def make_font(fonts, size):
     available = pygame.font.get_fonts()
-    # get_fonts() returns a list of lowercase spaceless font names
     choices = map(lambda x: x.lower().replace(' ', ''), fonts)
     for choice in choices:
         if choice in available:
@@ -65,36 +63,14 @@ clock = pygame.time.Clock()
 
 loop = True
 
-
-# font = pygame.font.SysFont("my_game.ttf", 30)
-#
-# text = font.render("Hello, Usagi - chan!", True, (255, 250, 250))
+menu_scene = MenuScene()
+global_scene_manager.change_scene(menu_scene)
 
 font_preferences = [
         "Bizarre-Ass Font Sans Serif",
         "They definitely dont have this installed Gothic",
         "Papyrus",
         "Comic Sans MS"]
-
-input_manager = InputManager()
-
-player = Player(50, 400, input_manager)
-
-game_object.add(player)
-# game_object.recycle(WarningSign, 1200, 0)
-
-game_event = GameEvent()
-game_object.add(game_event)
-
-for i in range(22):
-    platform2 = Platform(32 + i * 64, 650)
-    game_object.add(platform2)
-
-
-
-# for j in range(1):
-#     platform_flying = PlatformFlying(32 + j * 64, 200)
-#     game_object.add(platform_flying)
 
 
 while loop:
@@ -104,10 +80,10 @@ while loop:
         if event.type == pygame.QUIT:
             loop = False
         else:
-            input_manager.update(event)
+            global_input_manager.update(event)
 
-    text1 = create_text("Score", font_preferences, 28, (40, 128, 0))
-    text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
+    # text1 = create_text("Score:", font_preferences, 28, (40, 128, 0))
+    # text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
 
     game_object.update()
 
@@ -116,11 +92,20 @@ while loop:
 
     game_object.render(canvas)
 
-    canvas.blit(text1,
-        (105 - text1.get_width() // 2, 40 - text1.get_height() // 2))
-    canvas.blit(text2,
-                (200 - text2.get_width() // 2, 40 - text2.get_height() // 2))
-
+    if not type (global_scene_manager.current_scene) == GameoverScene:
+        text1 = create_text("Score:", font_preferences, 28, (40, 128, 0))
+        text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
+        canvas.blit(text1,
+            (105 - text1.get_width() // 2, 40 - text1.get_height() // 2))
+        canvas.blit(text2,
+                    (200 - text2.get_width() // 2, 40 - text2.get_height() // 2))
+    else:
+        text1 = create_text("Score:", font_preferences, 72, (40, 128, 0))
+        text2 = create_text(str(game_object.score), font_preferences, 72, (40, 128, 0))
+        canvas.blit(text1,
+                    (640 - text1.get_width() // 2, 650 - text1.get_height() // 2))
+        canvas.blit(text2,
+                    (900 - text2.get_width() // 2, 650 - text2.get_height() // 2))
     pygame.display.set_caption('Micro game')
 
     # 3. Flip
