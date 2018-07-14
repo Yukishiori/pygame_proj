@@ -8,7 +8,7 @@ class GameEvent(game_object.GameObject):
 
     def __init__(self):
         game_object.GameObject.__init__(self, 0, 0)
-        self.delay = FrameCounter(random.randint(100, 200))
+        self.delay = FrameCounter(random.randint(200, 300))
 
         self.platform_spawner = PlatformSpawner()
         game_object.add(self.platform_spawner)

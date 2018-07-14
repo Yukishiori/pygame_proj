@@ -4,11 +4,11 @@ from Platform.Platform import Platform
 from enemy.spike import Spike
 import game_object
 import random
-from Platform import platform_spawner
+
 class PlatformFlyingSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
-        self.counter = FrameCounter(100)
+        self.counter = FrameCounter(150)
         self.image = None
 
 
@@ -26,7 +26,7 @@ class PlatformFlyingSpawner(GameObject):
     def spawn(self):
         platform_speed = 6
         end_index = random.randint(5, 7)
-        ran_y = random.randint(100,550)
+        ran_y = random.randint(100, 550)
 
         for i in range (end_index):
             if i == 0 or i == end_index - 1:
