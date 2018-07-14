@@ -5,7 +5,7 @@ from enemy.spike_left import SpikeLeft
 from enemy.spike_right import SpikeRight
 import game_object
 import random
-from Platform import platform_spawner
+
 class PlatformFlyingSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)

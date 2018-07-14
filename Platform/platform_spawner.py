@@ -7,8 +7,8 @@ class PlatformSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
         self.counter_continue = FrameCounter(20)
-        self.counter_blank = FrameCounter(100)
-        self.image = None
+        self.counter_blank = FrameCounter(50)
+        self.renderer = None
         self.is_spawning = True
         self.counter_blank.expired = True
 
