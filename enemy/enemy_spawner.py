@@ -6,12 +6,16 @@ import game_object
 
 class EnemySpawner(GameObject):
     def __init__(self):
-        GameObject.__init__(self, 0, 0)
-        self.counter = FrameCounter(100) # 2 / 0.017
+        GameObject.__init__(self, 100, 0)
+        self.counter = FrameCounter(120)
+        self.image = None
 
     def update(self):
         self.counter.run()
         if self.counter.expired:
-            enemy = Enemy(100, 0)
-            game_object.add(enemy)
+            self.spawn()
+            # enemy = Enemy(100, 0)
+            # game_object.add(enemy)
             self.counter.reset()
+    def spawn(self):
+        game_object.recycle(Enemy, 100, 0)
