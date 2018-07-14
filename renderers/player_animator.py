@@ -37,7 +37,7 @@ class PlayerAnimator:
         if player_dx > 0:
             if player_dy >= 0:
                 self.current_animation = self.right_animation
-            else`:
+            else:
                 self.current_animation = self.straight_animation
 
         elif player_dx < 0:

@@ -1,7 +1,7 @@
 from game_object import GameObject
 from renderers.image_renderers import ImageRenderer
 from scenes.scene_manager import global_scene_manager
-from scenes.gameplay_scene import GameplayScene
+# from scenes.gameplay_scene import GameplayScene
 from input.input_manager import global_input_manager
 
 class Start(GameObject):

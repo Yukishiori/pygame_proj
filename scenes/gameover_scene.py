@@ -1,6 +1,6 @@
 import pygame
 from gameover.gameover import Gameover
-from gameover.play_again import PlayAgain
+# from gameover.play_again import PlayAgain
 import game_object
 
 
@@ -12,8 +12,8 @@ class GameoverScene:
         gameover = Gameover(640,368)
         game_object.add(gameover)
 
-        play_again = PlayAgain(640, 520)
-        game_object.add(play_again)
+        # play_again = PlayAgain(640, 520)
+        # game_object.add(play_again)
 
     def destroy(self):
         game_object.clear()
