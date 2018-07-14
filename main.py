@@ -2,6 +2,7 @@ import pygame
 
 from Platform.Platform import Platform
 from enemy.warning_sign import WarningSign
+from frame_counter import FrameCounter
 from player.player import Player
 
 import game_object
@@ -44,6 +45,7 @@ for i in range(22):
 #     platform_flying = PlatformFlying(32 + j * 64, 200)
 #     game_object.add(platform_flying)
 
+stop_timer = FrameCounter(100)
 
 while loop:
     # 1. Event processing
@@ -54,7 +56,10 @@ while loop:
         else:
             input_manager.update(event)
 
-
+    if not player.is_active:
+        stop_timer.run()
+        if stop_timer.expired:
+            loop = False
     game_object.update()
 
     # 2. Draw

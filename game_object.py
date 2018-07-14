@@ -1,4 +1,5 @@
 game_objects = []
+
 # from box_collider import BoxCollider
 game_speed = 3
 def add(game_object):
