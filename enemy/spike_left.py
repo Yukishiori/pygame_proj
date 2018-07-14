@@ -10,8 +10,8 @@ from renderers.animation import Animation
 class SpikeLeft(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
-        self.renderer = Animation(["images/spike_left.png"], loop=True)
-        self.box_collider = BoxCollider(32, 55)
+        self.renderer = Animation(["enemy/left.png"], loop=True)
+        self.box_collider = BoxCollider(10, 64)
         self.v_x = game_object.game_speed #velocity
 
     def update(self):

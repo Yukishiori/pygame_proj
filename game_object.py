@@ -1,13 +1,15 @@
 game_objects = []
-
+score = 0
 # from box_collider import BoxCollider
 game_speed = 3
 def add(game_object):
     game_objects.append(game_object)
 
+def clear():
+    game_objects.clear()
 
 def update():
-    # print(len(game_objects))
+    print(len(game_objects))
     for game_object in game_objects:
         if game_object.is_active:
             game_object.update()
@@ -59,8 +61,8 @@ class GameObject:
     def render(self, canvas):
         if self.renderer is not None:
             self.renderer.render(canvas, self.x, self.y)
-        if self.box_collider is not None:
-            self.box_collider.render(canvas)
+        # if self.box_collider is not None:
+        #     self.box_collider.render(canvas)
 
 
 

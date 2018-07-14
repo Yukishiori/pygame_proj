@@ -12,22 +12,22 @@ from game_object import GameObject
 from game_object import collide_with, add as add_game_object
 from frame_counter import FrameCounter
 from renderers.player_animator import PlayerAnimator
+from scenes.scene_manager import global_scene_manager
+from scenes.gameover_scene import GameoverScene
+from input.input_manager import global_input_manager
 from player.player_dies import PlayerDies
 
 class Player(GameObject):
     # 1. Create constructor (properties)
-    def __init__(self, x, y, input_manager):
+    def __init__(self, x, y):
         GameObject.__init__(self, x, y)
-
-        self.input_manager = input_manager
         self.shoot_lock = False
         self.counter = FrameCounter(30)
-        self.box_collider = BoxCollider(58, 110)
+        self.box_collider = BoxCollider(64, 128)
         self.dx = 0
         self.dy = 0
         self.jump_speed = -17
         self.renderer = PlayerAnimator()
-
 
 
 
@@ -45,19 +45,19 @@ class Player(GameObject):
         collide_list2 = collide_with(self.box_collider, Items)
         for obj in collide_list2:
             obj.deactivate()
+            game_object.score += 10
 
+        game_object.score += 1
 
 
     def move(self):
         self.dx = 0
         # self.dy = 0
-        if self.input_manager.right_pressed:
-            self.dx += 5
-        if self.input_manager.left_pressed:
-            self.dx -= 5
-        if self.input_manager.down_pressed:
-            self.dy += 3
-        if self.input_manager.up_pressed:
+        if global_input_manager.right_pressed:
+            self.dx += 3
+        if global_input_manager.left_pressed:
+            self.dx -= 3
+        if global_input_manager.up_pressed:
             box_at_bottom = self.box_collider
             box_at_bottom.y = self.box_collider.y + 2
             btm = game_object.collide_with(box_at_bottom, Platform)
@@ -72,7 +72,7 @@ class Player(GameObject):
         # print(self.dx)
 
     def check_future_y(self):
-        future_box = BoxCollider(58, 110)
+        future_box = BoxCollider(64, 120)
         future_box.x = self.x
         future_box.y = self.y
         # future_box.x += self.dx
@@ -97,7 +97,7 @@ class Player(GameObject):
         self.y += self.dy
 
     def check_future_x(self):
-        future_box = BoxCollider(58, 110)
+        future_box = BoxCollider(64, 120)
         future_box.x = self.x
         future_box.y = self.y
 
@@ -131,3 +131,6 @@ class Player(GameObject):
         GameObject.deactivate(self)
         death = PlayerDies(self.x, self.y)
         add_game_object(death)
+        over = GameoverScene()
+        global_scene_manager.change_scene(over)
+

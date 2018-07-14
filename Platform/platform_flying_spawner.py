@@ -31,10 +31,10 @@ class PlatformFlyingSpawner(GameObject):
 
         for i in range (end_index):
             if i == 0:
-                spike = game_object.recycle(SpikeLeft, 1343 + i * 64 - 64 + 12, ran_y)
+                spike = game_object.recycle(SpikeLeft, 1343 + i * 64 - 64+27, ran_y)
                 spike.v_x = platform_speed
             if i == end_index - 1:
-                spike = game_object.recycle(SpikeRight, 1343 + i * 64 - 12, ran_y)
+                spike = game_object.recycle(SpikeRight, 1343 + i * 64 - 27, ran_y)
                 spike.v_x = platform_speed
             else:
                 platform = game_object.recycle(Platform, 1343 + i*64, ran_y)
