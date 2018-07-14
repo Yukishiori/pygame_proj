@@ -1,14 +1,15 @@
 from game_object import GameObject
 from frame_counter import FrameCounter
 from Platform.Platform import Platform
-from enemy.spike import Spike
+from enemy.spike_left import SpikeLeft
+from enemy.spike_right import SpikeRight
 import game_object
 import random
-
+from Platform import platform_spawner
 class PlatformFlyingSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
-        self.counter = FrameCounter(150)
+        self.counter = FrameCounter(130)
         self.image = None
 
 
@@ -24,13 +25,16 @@ class PlatformFlyingSpawner(GameObject):
             self.counter.reset()
 
     def spawn(self):
-        platform_speed = 6
-        end_index = random.randint(5, 7)
-        ran_y = random.randint(100, 550)
+        platform_speed = 5
+        end_index = random.randint(4, 6)
+        ran_y = random.randint(200,570)
 
         for i in range (end_index):
-            if i == 0 or i == end_index - 1:
-                spike = game_object.recycle(Spike, 1343 + i*64, ran_y)
+            if i == 0:
+                spike = game_object.recycle(SpikeLeft, 1343 + i * 64 - 64 + 12, ran_y)
+                spike.v_x = platform_speed
+            if i == end_index - 1:
+                spike = game_object.recycle(SpikeRight, 1343 + i * 64 - 12, ran_y)
                 spike.v_x = platform_speed
             else:
                 platform = game_object.recycle(Platform, 1343 + i*64, ran_y)
