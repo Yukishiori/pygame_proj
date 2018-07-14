@@ -1,12 +1,14 @@
 import pygame
 
 from Platform.Platform import Platform
+from enemy.warning_sign import WarningSign
 from player.player import Player
 
 import game_object
 from game_event import GameEvent
 from input.input_manager import InputManager
 from renderers.animation import Animation
+
 
 BG = (0, 0, 0)
 
@@ -24,10 +26,10 @@ loop = True
 
 input_manager = InputManager()
 
-player = Player(50, 0, input_manager)
+player = Player(50, 400, input_manager)
 
 game_object.add(player)
-
+# game_object.recycle(WarningSign, 1200, 0)
 
 game_event = GameEvent()
 game_object.add(game_event)

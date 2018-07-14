@@ -136,4 +136,3 @@ class Player(GameObject):
         collided_with3 = game_object.collide_with(self.box_collider, Carrot)
         if len(collided_with3) > 0:
             self.deactivate()
-

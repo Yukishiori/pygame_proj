@@ -2,7 +2,6 @@ from game_object import GameObject
 from frame_counter import FrameCounter
 from Platform.Platform import Platform
 import game_object
-from renderers.animation import Animation
 
 class PlatformSpawner(GameObject):
     def __init__(self):
@@ -12,8 +11,6 @@ class PlatformSpawner(GameObject):
         self.renderer = None
         self.is_spawning = True
         self.counter_blank.expired = True
-        self.renderer = Animation(["images/bomb.png"], loop = True)
-
 
     def update(self):
         if self.counter_blank.expired:
