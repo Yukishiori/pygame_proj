@@ -23,7 +23,7 @@ loop = True
 
 input_manager = InputManager()
 
-player = Player(50, 560, input_manager)
+player = Player(50, 400, input_manager)
 
 game_object.add(player)
 

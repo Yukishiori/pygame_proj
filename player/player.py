@@ -1,4 +1,3 @@
-import numpy
 import pygame
 
 from Platform.Platform import Platform
@@ -21,10 +20,10 @@ class Player(GameObject):
         self.input_manager = input_manager
         self.shoot_lock = False
         self.counter = FrameCounter(30)
-        self.box_collider = BoxCollider(60, 120)
+        self.box_collider = BoxCollider(64, 128)
         self.dx = 0
         self.dy = 0
-        self.jump_speed = -12
+        self.jump_speed = -17
 
     # 2. Describe action / method / behavior
     def update(self):
@@ -48,13 +47,13 @@ class Player(GameObject):
         self.dx = 0
         # self.dy = 0
         if self.input_manager.right_pressed:
-            self.dx += 5
+            self.dx += 3
         if self.input_manager.left_pressed:
-            self.dx -= 5
+            self.dx -= 3
+        if self.input_manager.down_pressed:
+            self.dy += 3
         if self.input_manager.up_pressed:
-            box_at_bottom = BoxCollider(64, 128)
-            box_at_bottom.x = self.x
-            box_at_bottom.y = self.y
+            box_at_bottom = self.box_collider
             box_at_bottom.y = self.box_collider.y + 2
             btm = game_object.collide_with(box_at_bottom, Platform)
             for obj in btm:
@@ -68,7 +67,7 @@ class Player(GameObject):
         # print(self.dx)
 
     def check_future_y(self):
-        future_box = BoxCollider(64, 128)
+        future_box = BoxCollider(73, 116)
         future_box.x = self.x
         future_box.y = self.y
         # future_box.x += self.dx
@@ -80,9 +79,7 @@ class Player(GameObject):
                 move_continue = True
                 distance = 1
                 while move_continue:
-                    box = BoxCollider(64, 128)
-                    box.x = self.box_collider.x
-                    box.y = self.box_collider.y
+                    box = self.box_collider
                     box.y += distance
                     collided_list2 = game_object.collide_with(box, Platform)
                     for obj in collided_list2:
@@ -94,7 +91,7 @@ class Player(GameObject):
         self.y += self.dy
 
     def check_future_x(self):
-        future_box = BoxCollider(64, 128)
+        future_box = BoxCollider(73, 116)
         future_box.x = self.x
         future_box.y = self.y
 
@@ -123,4 +120,3 @@ class Player(GameObject):
         collided_with3 = game_object.collide_with(self.box_collider, Carrot)
         if len(collided_with3) > 0:
             self.deactivate()
-
