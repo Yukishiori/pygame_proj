@@ -11,6 +11,6 @@ class Start(GameObject):
 
     def update(self):
         GameObject.update(self)
-        if global_input_manager.x_pressed:
-            gameplay = GameplayScene()
-            global_scene_manager.change_scene(gameplay)
+        # if global_input_manager.x_pressed:
+        #     gameplay = GameplayScene()
+        #     global_scene_manager.change_scene(gameplay)

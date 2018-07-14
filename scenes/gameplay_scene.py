@@ -1,3 +1,4 @@
+import pygame
 from Platform.Platform import Platform
 from background.background import Background
 from player.player import Player
@@ -10,7 +11,6 @@ class GameplayScene:
         pass
 
     def setup(self):
-
         player = Player(50, 400)
 
         game_object.add(player)

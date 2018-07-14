@@ -4,8 +4,10 @@ import game_object
 from input.input_manager import global_input_manager
 
 from scenes.gameover_scene import GameoverScene
+from scenes.gameplay_scene import GameplayScene
 from scenes.scene_manager import global_scene_manager
 from scenes.menu_scene import MenuScene
+
 
 
 from input.input_manager import InputManager
@@ -52,12 +54,6 @@ def create_text(text, fonts, size, color):
 
 # 1. Init pygame
 pygame.init()
-
-# warning_sound = pygame.mixer.Sound()
-
-pygame.mixer.music.load("music/backgroundpygame.wav")
-pygame.mixer.music.play(-1)
-
 # 2. Set screen
 SIZE = (1280, 690)
 canvas = pygame.display.set_mode(SIZE)
@@ -91,7 +87,10 @@ while loop:
             loop = False
         else:
             global_input_manager.update(event)
-
+            if global_input_manager.x_pressed:
+                if not type(global_scene_manager.current_scene) == GameplayScene:
+                    gameplay_scene = GameplayScene()
+                    global_scene_manager.change_scene(gameplay_scene)
     # text1 = create_text("Score:", font_preferences, 28, (40, 128, 0))
     # text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
 
@@ -114,10 +113,10 @@ while loop:
         text1 = create_text("Score:", font_preferences, 72, (40, 128, 0))
         text2 = create_text(str(game_object.score), font_preferences, 72, (40, 128, 0))
         canvas.blit(text1,
-                    (640 - text1.get_width() // 2, 650 - text1.get_height() // 2))
+                    (640 - text1.get_width(), 650 - text1.get_height() // 2))
         canvas.blit(text2,
-                    (900 - text2.get_width() // 2, 650 - text2.get_height() // 2))
-    pygame.display.set_caption('jump jump jump')
+                    (850 - text2.get_width(), 650 - text2.get_height() // 2))
+    pygame.display.set_caption('Micro game')
 
     # 3. Flip
     pygame.display.flip()
