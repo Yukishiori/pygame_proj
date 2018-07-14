@@ -9,7 +9,7 @@ import game_object
 from game_event import GameEvent
 from input.input_manager import InputManager
 from renderers.animation import Animation
-
+from background.background import Background
 
 BG = (0, 0, 0)
 
@@ -30,7 +30,10 @@ input_manager = InputManager()
 player = Player(50, 400, input_manager)
 
 game_object.add(player)
+
+background = Background(640, 360)
 # game_object.recycle(WarningSign, 1200, 0)
+game_object.add( background)
 
 game_event = GameEvent()
 game_object.add(game_event)
@@ -66,6 +69,7 @@ while loop:
     canvas.fill(BG)
 
     game_object.render(canvas)
+    # background.renderer.render(canvas, background.x, background.y)
 
     pygame.display.set_caption('Micro game')
 
