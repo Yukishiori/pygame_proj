@@ -2,11 +2,12 @@ import pygame
 from box_collider import BoxCollider
 from frame_counter import FrameCounter
 from game_object import GameObject
+from renderers.animation import Animation
 
 class WarningSign(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
-        self.image = pygame.image.load("images/warning.png")
+        self.renderer = Animation(["images/warning_sign.png"], loop = True)
         self.box_collider = BoxCollider(64,64)
         self.count = FrameCounter(50)
 

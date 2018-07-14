@@ -43,12 +43,7 @@ class Player(GameObject):
 
 
 
-        collide_list = collide_with(self.box_collider, Carrot)
-        for obj in collide_list:
-            death = PlayerDies(obj.x, obj.y)
-            add_game_object(death)
-            obj.deactivate()
-            self.deactivate()
+
 
 
 
@@ -136,3 +131,8 @@ class Player(GameObject):
         collided_with3 = game_object.collide_with(self.box_collider, Carrot)
         if len(collided_with3) > 0:
             self.deactivate()
+
+    def deactivate(self):
+        GameObject.deactivate(self)
+        death = PlayerDies(self.x, self.y)
+        add_game_object(death)
