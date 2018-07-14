@@ -4,13 +4,10 @@ from Platform.Platform import Platform
 from player.player import Player
 
 import game_object
-import game_event
-from enemy.enemy_spawner import EnemySpawner
-from Platform.platform_spawner import PlatformSpawner
-from Platform.platform_flying_spawner import PlatformFlyingSpawner
+from game_event import GameEvent
 from input.input_manager import InputManager
 
-BG = (255, 255, 0)
+BG = (0, 0, 0)
 
 # 1. Init pygame
 pygame.init()
@@ -30,7 +27,8 @@ player = Player(50, 0, input_manager)
 
 game_object.add(player)
 
-game_event = game_event.GameEvent()
+
+game_event = GameEvent()
 game_object.add(game_event)
 
 for i in range(22):
@@ -44,10 +42,6 @@ for i in range(22):
 #     game_object.add(platform_flying)
 
 
-
-
-
-
 while loop:
     # 1. Event processing
     events = pygame.event.get()
@@ -56,6 +50,7 @@ while loop:
             loop = False
         else:
             input_manager.update(event)
+
 
     game_object.update()
 

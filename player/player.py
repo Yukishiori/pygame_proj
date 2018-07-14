@@ -1,11 +1,14 @@
 import pygame
 
 from Platform.Platform import Platform
-from enemy.spike import Spike
+from enemy.spike_left import SpikeLeft
+from enemy.spike_right import SpikeRight
+from enemy.carrot import Carrot
+from items.items import Items
 from box_collider import BoxCollider
-from player.player_bullet import PlayerBullet
 import game_object
 from game_object import GameObject
+from game_object import collide_with
 from frame_counter import FrameCounter
 
 
@@ -28,6 +31,17 @@ class Player(GameObject):
         self.move()
         # self.shoot()
         self.deactivate_if_need()
+
+        collide_list = collide_with(self.box_collider, Carrot)
+        for obj in collide_list:
+            obj.deactivate()
+            self.deactivate()
+
+        collide_list2 = collide_with(self.box_collider, Items)
+        for obj in collide_list2:
+            obj.deactivate()
+
+
 
     def move(self):
         self.dx = 0
@@ -93,8 +107,17 @@ class Player(GameObject):
         self.x += self.dx
 
     def deactivate_if_need(self):
-        collided_with = game_object.collide_with(self.box_collider, Spike)
-        if len(collided_with) > 0:
+        collided_with1 = game_object.collide_with(self.box_collider, SpikeLeft)
+        if len(collided_with1) > 0:
             self.deactivate()
         if self.y > 700:
             self.deactivate()
+
+        collided_with2 = game_object.collide_with(self.box_collider, SpikeRight)
+        if len(collided_with2) > 0:
+            self.deactivate()
+
+        collided_with3 = game_object.collide_with(self.box_collider, Carrot)
+        if len(collided_with3) > 0:
+            self.deactivate()
+
