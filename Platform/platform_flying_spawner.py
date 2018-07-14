@@ -9,7 +9,7 @@ import random
 class PlatformFlyingSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
-        self.counter = FrameCounter(130)
+        self.counter = FrameCounter(random.randint(100, 120))
         self.image = None
 
 

@@ -22,7 +22,7 @@ class Player(GameObject):
         self.input_manager = input_manager
         self.shoot_lock = False
         self.counter = FrameCounter(30)
-        self.box_collider = BoxCollider(64, 128)
+        self.box_collider = BoxCollider(58, 110)
         self.dx = 0
         self.dy = 0
         self.jump_speed = -17
@@ -42,12 +42,6 @@ class Player(GameObject):
     def update_animator(self):
         self.renderer.update(self.dx,self.dy)
 
-
-
-
-
-
-
         collide_list2 = collide_with(self.box_collider, Items)
         for obj in collide_list2:
             obj.deactivate()
@@ -58,9 +52,9 @@ class Player(GameObject):
         self.dx = 0
         # self.dy = 0
         if self.input_manager.right_pressed:
-            self.dx += 3
+            self.dx += 5
         if self.input_manager.left_pressed:
-            self.dx -= 3
+            self.dx -= 5
         if self.input_manager.down_pressed:
             self.dy += 3
         if self.input_manager.up_pressed:
@@ -78,7 +72,7 @@ class Player(GameObject):
         # print(self.dx)
 
     def check_future_y(self):
-        future_box = BoxCollider(64, 120)
+        future_box = BoxCollider(58, 110)
         future_box.x = self.x
         future_box.y = self.y
         # future_box.x += self.dx
@@ -103,7 +97,7 @@ class Player(GameObject):
         self.y += self.dy
 
     def check_future_x(self):
-        future_box = BoxCollider(64, 120)
+        future_box = BoxCollider(58, 110)
         future_box.x = self.x
         future_box.y = self.y
 

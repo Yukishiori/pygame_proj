@@ -31,7 +31,7 @@ class GameEvent(game_object.GameObject):
 
         self.delay.run()
         if self.delay.expired:
-            self.platform_spawner.counter_blank.reset()
-            self.platform_flying_spawner.counter.reset()
+            # self.platform_spawner.counter_blank.reset()
+            # self.platform_flying_spawner.counter.reset()
             self.delay.reset()
 

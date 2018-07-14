@@ -33,7 +33,7 @@ game_object.add(player)
 
 background = Background(640, 360)
 # game_object.recycle(WarningSign, 1200, 0)
-game_object.add( background)
+# game_object.add(background)
 
 game_event = GameEvent()
 game_object.add(game_event)
@@ -67,7 +67,7 @@ while loop:
 
     # 2. Draw
     canvas.fill(BG)
-
+    # background.render(canvas)
     game_object.render(canvas)
     # background.renderer.render(canvas, background.x, background.y)
 

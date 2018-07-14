@@ -2,15 +2,21 @@ from game_object import GameObject
 from frame_counter import FrameCounter
 from Platform.Platform import Platform
 import game_object
+from random import randint
+
 
 class PlatformSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
         self.counter_continue = FrameCounter(20)
-        self.counter_blank = FrameCounter(50)
+
+        self.counter_blank = FrameCounter(randint(300, 1000))
         self.renderer = None
         self.is_spawning = True
-        self.counter_blank.expired = True
+
+
+    def change_counter(self):
+        self.counter_blank = FrameCounter(randint(300, 1000))
 
     def update(self):
         if self.counter_blank.expired:
