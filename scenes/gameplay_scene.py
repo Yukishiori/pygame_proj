@@ -17,8 +17,8 @@ class GameplayScene:
 
         game_event = GameEvent()
         game_object.add(game_event)
-        background = Background(640, 320)
-        game_object.game_objects.insert(0, background)
+        # background = Background(640, 320)
+        # game_object.game_objects.insert(0, background)
 
 
         for i in range(22):

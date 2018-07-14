@@ -12,8 +12,6 @@ from game_object import GameObject
 from game_object import collide_with, add as add_game_object
 from frame_counter import FrameCounter
 from renderers.player_animator import PlayerAnimator
-from scenes.scene_manager import global_scene_manager
-from scenes.gameover_scene import GameoverScene
 from input.input_manager import global_input_manager
 from player.player_dies import PlayerDies
 
@@ -23,10 +21,10 @@ class Player(GameObject):
         GameObject.__init__(self, x, y)
         self.shoot_lock = False
         self.counter = FrameCounter(30)
-        self.box_collider = BoxCollider(64, 128)
+        self.box_collider = BoxCollider(60, 110)
         self.dx = 0
         self.dy = 0
-        self.jump_speed = -17
+        self.jump_speed = -22
         self.renderer = PlayerAnimator()
 
 
@@ -45,7 +43,7 @@ class Player(GameObject):
         collide_list2 = collide_with(self.box_collider, Items)
         for obj in collide_list2:
             obj.deactivate()
-            game_object.score += 10
+            game_object.score += 1000
 
         game_object.score += 1
 
@@ -54,9 +52,9 @@ class Player(GameObject):
         self.dx = 0
         # self.dy = 0
         if global_input_manager.right_pressed:
-            self.dx += 3
+            self.dx += 4
         if global_input_manager.left_pressed:
-            self.dx -= 3
+            self.dx -= 4
         if global_input_manager.up_pressed:
             box_at_bottom = self.box_collider
             box_at_bottom.y = self.box_collider.y + 2
@@ -64,15 +62,17 @@ class Player(GameObject):
             for obj in btm:
                 if type(obj) == Platform:
                     self.dy = self.jump_speed
+        if global_input_manager.down_pressed:
+            self.dy += 3
 
-        self.dy += 0.5
+        self.dy += 0.98
 
         self.check_future_y()
         self.check_future_x()
         # print(self.dx)
 
     def check_future_y(self):
-        future_box = BoxCollider(64, 120)
+        future_box = BoxCollider(60, 110)
         future_box.x = self.x
         future_box.y = self.y
         # future_box.x += self.dx
@@ -83,21 +83,25 @@ class Player(GameObject):
             if type(obj) == Platform:
                 move_continue = True
                 distance = 1
-                while move_continue:
-                    box = self.box_collider
-                    box.y += distance
-                    collided_list2 = game_object.collide_with(box, Platform)
-                    for obj in collided_list2:
-                        if type(obj) == Platform:
-                            move_continue = False
-                        else:
-                            distance += 1
-                            self.y += numpy.sign(self.dy)
+                # while move_continue:
+                #     box = self.box_collider
+                #     box.y += distance
+                #     collided_list2 = game_object.collide_with(box, Platform)
+                #     for obj in collided_list2:
+                #         if type(obj) == Platform:
+                #             move_continue = False
+                #         else:
+                #             distance += 1
+                #             self.y += numpy.sign(self.dy)
                 self.dy = 0
+
+        if self.y > 610:
+            self.dy += 10
         self.y += self.dy
 
+
     def check_future_x(self):
-        future_box = BoxCollider(64, 120)
+        future_box = BoxCollider(60, 110)
         future_box.x = self.x
         future_box.y = self.y
 
@@ -109,6 +113,9 @@ class Player(GameObject):
             if type(obj) == Platform:
                 # print('hello')
                 self.dx = 0
+
+        if self.x + self.dx < 32:
+            self.dx = 0
 
         self.x += self.dx
 
@@ -131,6 +138,4 @@ class Player(GameObject):
         GameObject.deactivate(self)
         death = PlayerDies(self.x, self.y)
         add_game_object(death)
-        over = GameoverScene()
-        global_scene_manager.change_scene(over)
 

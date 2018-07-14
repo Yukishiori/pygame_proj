@@ -10,7 +10,7 @@ class SpikeRight(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
         self.renderer = Animation(["enemy/right.png"], loop=True)
-        self.box_collider = BoxCollider(10, 64)
+        self.box_collider = BoxCollider(10, 60)
         self.v_x = game_object.game_speed #velocity
 
     def update(self):

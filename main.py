@@ -117,7 +117,7 @@ while loop:
                     (640 - text1.get_width() // 2, 650 - text1.get_height() // 2))
         canvas.blit(text2,
                     (900 - text2.get_width() // 2, 650 - text2.get_height() // 2))
-    pygame.display.set_caption('Micro game')
+    pygame.display.set_caption('jump jump jump')
 
     # 3. Flip
     pygame.display.flip()

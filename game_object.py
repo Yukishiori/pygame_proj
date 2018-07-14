@@ -1,7 +1,17 @@
+from frame_counter import FrameCounter
+
 game_objects = []
 score = 0
 # from box_collider import BoxCollider
+hard_timer = FrameCounter(700)
+
 game_speed = 3
+blank_time = 50
+
+flying_counter = 130
+
+
+
 def add(game_object):
     game_objects.append(game_object)
 
@@ -9,7 +19,13 @@ def clear():
     game_objects.clear()
 
 def update():
-    print(len(game_objects))
+    global blank_time
+    global flying_counter
+    hard_timer.run()
+    if hard_timer.expired:
+        blank_time += 10
+        flying_counter -= 10
+        hard_timer.reset()
     for game_object in game_objects:
         if game_object.is_active:
             game_object.update()
