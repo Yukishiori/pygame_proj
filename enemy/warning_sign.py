@@ -9,6 +9,8 @@ class WarningSign(GameObject):
         self.image = pygame.image.load("images/warning.png")
         self.box_collider = BoxCollider(64,64)
         self.count = FrameCounter(50)
+        # pygame.mixer.music.load('music/warning.wav')
+        # pygame.mixer.music.play(0)
 
     def update(self):
         GameObject.update(self)

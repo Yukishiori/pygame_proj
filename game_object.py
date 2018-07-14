@@ -1,4 +1,5 @@
 game_objects = []
+score = 0
 # from box_collider import BoxCollider
 game_speed = 3
 def add(game_object):
@@ -61,8 +62,8 @@ class GameObject:
             height = self.image.get_height()
             render_pos = (self.x - width / 2, self.y - height / 2)
             canvas.blit(self.image, render_pos)
-        if self.box_collider is not None:
-            self.box_collider.render(canvas)
+        # if self.box_collider is not None:
+        #     self.box_collider.render(canvas)
 
 
 

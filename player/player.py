@@ -40,7 +40,9 @@ class Player(GameObject):
         collide_list2 = collide_with(self.box_collider, Items)
         for obj in collide_list2:
             obj.deactivate()
+            game_object.score += 10
 
+        game_object.score += 1
 
 
     def move(self):
