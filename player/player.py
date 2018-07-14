@@ -44,6 +44,7 @@ class Player(GameObject):
 
         collide_list2 = collide_with(self.box_collider, Items)
         for obj in collide_list2:
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound("music/eating_fish_pizza_coin.wav"))
             obj.deactivate()
             game_object.score += 10
 
@@ -56,7 +57,7 @@ class Player(GameObject):
         if global_input_manager.right_pressed:
             self.dx += 3
         if global_input_manager.left_pressed:
-            self.dx -= 3
+            self.dx -= 7
         if global_input_manager.up_pressed:
             box_at_bottom = self.box_collider
             box_at_bottom.y = self.box_collider.y + 2
@@ -64,6 +65,7 @@ class Player(GameObject):
             for obj in btm:
                 if type(obj) == Platform:
                     self.dy = self.jump_speed
+                    pygame.mixer.Channel(2).play(pygame.mixer.Sound("music/jumping.wav"))
 
         self.dy += 0.5
 

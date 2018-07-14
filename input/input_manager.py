@@ -15,7 +15,8 @@ class InputManager:
             self.left_pressed,
             self.down_pressed,
             self.up_pressed,
-            self.x_pressed)
+            self.x_pressed,
+            self.enter)
 
     def update(self, event):
         if event.type == pygame.KEYDOWN:
@@ -29,6 +30,8 @@ class InputManager:
                 self.up_pressed = True
             elif event.key == pygame.K_x:
                 self.x_pressed = True
+            elif event.key == pygame.K_KP_ENTER:
+                self.enter = True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT:
                 self.right_pressed = False
@@ -40,5 +43,7 @@ class InputManager:
                 self.up_pressed = False
             elif event.key == pygame.K_x:
                 self.x_pressed = False
+            elif event.key == pygame.K_KP_ENTER:
+                self.enter = False
 
 global_input_manager = InputManager()
