@@ -25,7 +25,7 @@ loop = True
 
 input_manager = InputManager()
 
-player = Player(50, 0, input_manager)
+player = Player(50, 400, input_manager)
 
 game_object.add(player)
 # game_object.recycle(WarningSign, 1200, 0)
