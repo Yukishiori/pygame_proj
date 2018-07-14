@@ -1,7 +1,6 @@
 game_objects = []
 # from box_collider import BoxCollider
 game_speed = 3
-
 def add(game_object):
     game_objects.append(game_object)
 
@@ -11,6 +10,7 @@ def update():
     for game_object in game_objects:
         if game_object.is_active:
             game_object.update()
+
 
 
 def render(canvas):
