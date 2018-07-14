@@ -2,9 +2,13 @@ import pygame
 
 import game_object
 from input.input_manager import global_input_manager
+
 from scenes.gameover_scene import GameoverScene
 from scenes.scene_manager import global_scene_manager
 from scenes.menu_scene import MenuScene
+
+
+from input.input_manager import InputManager
 
 
 BG = (0, 0, 0)
@@ -66,6 +70,12 @@ loop = True
 menu_scene = MenuScene()
 global_scene_manager.change_scene(menu_scene)
 
+
+# game_object.recycle(WarningSign, 1200, 0)
+# game_object.add( background)
+
+
+
 font_preferences = [
         "Bizarre-Ass Font Sans Serif",
         "They definitely dont have this installed Gothic",
@@ -91,10 +101,11 @@ while loop:
     canvas.fill(BG)
 
     game_object.render(canvas)
+    # background.renderer.render(canvas, background.x, background.y)
 
     if not type (global_scene_manager.current_scene) == GameoverScene:
-        text1 = create_text("Score:", font_preferences, 28, (40, 128, 0))
-        text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
+        text1 = create_text("Score:", font_preferences, 28, (255, 0, 0))
+        text2 = create_text(str(game_object.score), font_preferences, 28, (255, 0, 0))
         canvas.blit(text1,
             (105 - text1.get_width() // 2, 40 - text1.get_height() // 2))
         canvas.blit(text2,
