@@ -1,16 +1,15 @@
 import pygame
 
 import pygame
-from player.player import Player
 from box_collider import BoxCollider
 from game_object import GameObject
 import game_object
 
 
-class Obstacle(GameObject):
+class Spike(GameObject):
     def __init__(self, x, y):
         GameObject.__init__(self, x, y)
-        self.image = pygame.image.load("images/enemy/bomb.png")
+        self.image = pygame.image.load("images/bomb.png")
         self.box_collider = BoxCollider(64, 64)
         self.v_x = game_object.game_speed #velocity
 
@@ -22,6 +21,4 @@ class Obstacle(GameObject):
 
     def deactivate_if_needed(self):
         if self.x + 64 <0:
-            self.deactivate()
-        if BoxCollider.collide_with(self,Player):
             self.deactivate()

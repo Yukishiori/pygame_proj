@@ -1,7 +1,7 @@
 import pygame
 
 from Platform.Platform import Platform
-from enemy.obstacle import Obstacle
+from enemy.spike import Spike
 from box_collider import BoxCollider
 from player.player_bullet import PlayerBullet
 import game_object
@@ -20,14 +20,14 @@ class Player(GameObject):
         self.box_collider = BoxCollider(64, 128)
         self.dx = 0
         self.dy = 0
-        self.jump_speed = -15
+        self.jump_speed = -17
 
     # 2. Describe action / method / behavior
     def update(self):
         GameObject.update(self)
         self.move()
-        self.shoot()
-        self.deactivate_if_needed()
+        # self.shoot()
+        self.deactivate_if_need()
 
     def move(self):
         self.dx = 0
@@ -92,18 +92,9 @@ class Player(GameObject):
 
         self.x += self.dx
 
-
-    def shoot(self):
-        if self.input_manager.x_pressed and not self.shoot_lock:
-            game_object.recycle(PlayerBullet, self.x, self.y - 40)
-            self.shoot_lock = True
-
-        if self.shoot_lock:
-            self.counter.run()
-            if self.counter.expired:
-                self.shoot_lock = False
-                self.counter.reset()
-
     def deactivate_if_need(self):
-        if BoxCollider.collide_with(self,Obstacle):
+        collided_with = game_object.collide_with(self.box_collider, Spike)
+        if len(collided_with) > 0:
+            self.deactivate()
+        if self.y > 700:
             self.deactivate()

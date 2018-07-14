@@ -4,7 +4,7 @@ from Platform.Platform import Platform
 from player.player import Player
 
 import game_object
-
+import game_event
 from enemy.enemy_spawner import EnemySpawner
 from Platform.platform_spawner import PlatformSpawner
 from Platform.platform_flying_spawner import PlatformFlyingSpawner
@@ -30,15 +30,10 @@ player = Player(50, 0, input_manager)
 
 game_object.add(player)
 
-platform_spawner = PlatformSpawner()
-game_object.add(platform_spawner)
-enemy_spawner = EnemySpawner()
-game_object.add(enemy_spawner)
-platform_flying_spawner = PlatformFlyingSpawner()
-game_object.add(platform_flying_spawner)
+game_event = game_event.GameEvent()
+game_object.add(game_event)
 
-
-for i in range(21):
+for i in range(22):
     platform2 = Platform(32 + i * 64, 650)
     game_object.add(platform2)
 
