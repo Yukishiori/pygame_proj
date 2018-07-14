@@ -51,7 +51,7 @@ class Player(GameObject):
         # print(self.dx)
 
     def check_future_y(self):
-        future_box = BoxCollider(73, 116)
+        future_box = BoxCollider(64, 128)
         future_box.x = self.x
         future_box.y = self.y
         # future_box.x += self.dx
@@ -75,7 +75,7 @@ class Player(GameObject):
         self.y += self.dy
 
     def check_future_x(self):
-        future_box = BoxCollider(73, 116)
+        future_box = BoxCollider(64, 128)
         future_box.x = self.x
         future_box.y = self.y
 
