@@ -35,17 +35,17 @@ class PlayerAnimator:
 
     def update(self, player_dx, player_dy):
         if player_dx > 0:
-            if player_dy > 0:
+            if player_dy < 0:
                 self.current_animation = self.right_animation
             else:
                 self.current_animation = self.straight_animation
         elif player_dx < 0:
-            if player_dy > 0:
+            if player_dy < 0:
                 self.current_animation = self.left_animation
             else:
                 self.current_animation =Animation(["images/player_left/player1_right2.png"], loop = True)
         else:
-            if player_dy > 0:
+            if player_dy < 0:
                 self.current_animation = self.right_animation
             else:
                 self.current_animation = self.straight_animation
