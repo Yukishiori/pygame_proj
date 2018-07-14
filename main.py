@@ -9,6 +9,7 @@ from enemy.enemy_spawner import EnemySpawner
 from Platform.platform_spawner import PlatformSpawner
 from Platform.platform_flying_spawner import PlatformFlyingSpawner
 from input.input_manager import InputManager
+from renderers.animation import Animation
 
 BG = (255, 255, 0)
 

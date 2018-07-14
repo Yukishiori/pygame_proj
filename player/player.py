@@ -7,13 +7,13 @@ from player.player_bullet import PlayerBullet
 import game_object
 from game_object import GameObject
 from frame_counter import FrameCounter
-
+from renderers.player_animator import PlayerAnimator
 
 class Player(GameObject):
     # 1. Create constructor (properties)
     def __init__(self, x, y, input_manager):
         GameObject.__init__(self, x, y)
-        self.image = pygame.image.load('images/player/bunny.png')
+
         self.input_manager = input_manager
         self.shoot_lock = False
         self.counter = FrameCounter(30)
@@ -21,6 +21,7 @@ class Player(GameObject):
         self.dx = 0
         self.dy = 0
         self.jump_speed = -17
+        self.renderer = PlayerAnimator()
 
     # 2. Describe action / method / behavior
     def update(self):
@@ -28,6 +29,10 @@ class Player(GameObject):
         self.move()
         # self.shoot()
         self.deactivate_if_need()
+        self.update_animator()
+
+    def update_animator(self):
+        self.renderer.update(self.dx,self.dy)
 
     def move(self):
         self.dx = 0

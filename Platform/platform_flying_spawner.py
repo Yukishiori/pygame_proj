@@ -4,12 +4,13 @@ from Platform.Platform import Platform
 from enemy.spike import Spike
 import game_object
 import random
+from renderers.animation import Animation
 from Platform import platform_spawner
 class PlatformFlyingSpawner(GameObject):
     def __init__(self):
         GameObject.__init__(self, 0, 0)
         self.counter = FrameCounter(100)
-        self.image = None
+
 
 
 
