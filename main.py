@@ -91,6 +91,7 @@ while loop:
                 if not type(global_scene_manager.current_scene) == GameplayScene:
                     gameplay_scene = GameplayScene()
                     global_scene_manager.change_scene(gameplay_scene)
+                    game_object.score = 0
     # text1 = create_text("Score:", font_preferences, 28, (40, 128, 0))
     # text2 = create_text(str(game_object.score), font_preferences, 28, (40, 128, 0))
 
